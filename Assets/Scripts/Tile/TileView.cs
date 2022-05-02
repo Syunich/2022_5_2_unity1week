@@ -11,14 +11,19 @@ public class TileView : MonoBehaviour
    
     public IEnumerator Reverse()
     {
+        transform.position = new Vector3(transform.position.x, transform.position.y, -1);
+        var localEulerAngles = transform.localEulerAngles;
+        Debug.Log(localEulerAngles);
         var baseScale = transform.localScale;
         Sequence seq = DOTween.Sequence();
         seq.Append(transform.DOScale(new Vector3(transform.localScale.x + ScaleSize, transform.localScale.y + ScaleSize,
             transform.localScale.z), ScaleChangeTime).SetEase(Ease.OutQuart));
-        seq.Join(transform.DOLocalRotate(new Vector3(transform.localEulerAngles.x, 0, 0), RotateChangeTime));
-        seq.Append(transform.DOScale(baseScale, ScaleChangeTime));
+        seq.Join(transform.DOLocalRotate(new Vector3((int)localEulerAngles.x + 360, (int)localEulerAngles.y + 180, 0), RotateChangeTime
+            , RotateMode.FastBeyond360));
+        seq.Append(transform.DOScale(baseScale, ScaleChangeTime).SetEase(Ease.InQuart));
 
         yield return seq.Play().WaitForCompletion();
+        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
     }
 
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PresenterCreator : MonoBehaviour
+public class TilePreCreator : MonoBehaviour
 {
     /// <summary>
     /// TilePresenter専用Instantiate、表裏を指定する必要がある
@@ -12,7 +12,7 @@ public class PresenterCreator : MonoBehaviour
     /// <param name="isWhite">白側で置くか</param>
     /// <returns></returns>
     /// 
-    public static TilePresenter Iinstantiate(GameObject obj , Vector3 position , bool isWhite)
+    public static TilePresenter Instantiate(GameObject obj , Vector3 position , bool isWhite)
     {
         if (obj.GetComponent<TilePresenter>() == null)
             return null;
@@ -20,11 +20,11 @@ public class PresenterCreator : MonoBehaviour
         float rotateXvalue;
         if (isWhite)
         {
-            rotateXvalue = 180;
+            rotateXvalue = 0;
         }
         else
         {
-            rotateXvalue = 0;
+            rotateXvalue = 180;
         }
 
         var presenter = Instantiate(obj, position, Quaternion.Euler(rotateXvalue, 0, 0)).GetComponent<TilePresenter>();
