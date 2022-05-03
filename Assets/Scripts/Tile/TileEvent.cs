@@ -34,8 +34,6 @@ public class TileEvent : MonoBehaviour , IPointerClickHandler
         }
         
         TilesManager.Instance.Reverse(presenter, ReverseType.One);
-   //     StartCoroutine( presenter.Reverse());
-        
     }
 }
 

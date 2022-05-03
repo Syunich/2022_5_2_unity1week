@@ -15,6 +15,11 @@ public class TilePresenter : MonoBehaviour
         view = GetComponent<TileView>();
     }
 
+    public TileModel GetModel()
+    {
+        return model;
+    }
+    
     public void SetModel(TileModel model)
     {
         this.model = model;
@@ -30,8 +35,7 @@ public class TilePresenter : MonoBehaviour
         yield return StartCoroutine(view.Reverse());
         model.Reverse();
         model.IsMoving = false;
-
-        Debug.Log(model.IsWhite);
+        
     }
 
     private bool CanReverse()

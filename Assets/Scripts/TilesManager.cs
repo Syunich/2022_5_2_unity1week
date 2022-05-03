@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using SyunichTool;
 using System.Linq;
+using UnityEditor.Experimental.GraphView;
+using UnityEngine.Events;
+using UnityEngine.Networking;
 
 public class TilesManager : SingletonMonovehavior<TilesManager>
 {
@@ -17,7 +20,21 @@ public class TilesManager : SingletonMonovehavior<TilesManager>
     private TilePresenter[,] presenters;
     private float lengthBetweenTile = 0.8f;
 
-    public int length
+    public bool IsAnyMoving()
+    {
+        foreach (var presenter in presenters)
+        {
+           if(presenter.GetModel().IsMoving) 
+               return true;
+        }
+        return false;
+    }
+
+    public int xlength
+    {
+        get => presenters.GetLength(1);
+    }
+    public int ylength
     {
         get => presenters.GetLength(0);
     }
@@ -29,8 +46,33 @@ public class TilesManager : SingletonMonovehavior<TilesManager>
 
     public void Reverse(TilePresenter presenter, ReverseType type)
     {
-        Debug.Log(type.ToString());
-        GetElementsFromPresenter(presenter);
+        if (IsAnyMoving())
+        {
+            return;
+        }
+        if (!CheckPresenterInPresenters(presenter))
+        {
+            Debug.LogError("Cant Find" + presenter + "in Array");
+        }
+
+        var indexes = GetElementsFromPresenter(presenter);
+        TilePresenter[] selected;
+        switch (type)
+        {
+            case ReverseType.One: StartCoroutine(presenter.Reverse()); break;
+            case ReverseType.Cross: selected = TileSelecter.SelectCross(presenters , indexes.i , indexes.j);
+                foreach (var pre in selected)
+                {
+                   StartCoroutine(pre.Reverse());
+                }
+                break;
+            case ReverseType.Square: selected = TileSelecter.SelectSquare(presenters , indexes.i , indexes.j);
+                foreach (var pre in selected)
+                {
+                    StartCoroutine(pre.Reverse());
+                }
+                break;
+        }
     }
 
     private (int i , int j) GetElementsFromPresenter(TilePresenter presenter)
@@ -42,11 +84,8 @@ public class TilesManager : SingletonMonovehavior<TilesManager>
 
         var x = presenter.transform.localPosition.x;
         var y = presenter.transform.localPosition.y;
-        int i = (int)Math.Round(length / 2 - y / lengthBetweenTile + 0.5f * (1 - length % 2));
-        int j = (int)Math.Round(x / lengthBetweenTile + length / 2 - 0.5f * (1 - length % 2));
-
-        Debug.Log(i);
-        Debug.Log(j);
+        int i = (int)Math.Round(ylength / 2 - y / lengthBetweenTile - 0.5f * (1 - ylength % 2));
+        int j = (int)Math.Round(x / lengthBetweenTile + xlength / 2 - 0.5f * (1 - xlength % 2));
 
         return (i, j);
     }
@@ -62,9 +101,84 @@ public class TilesManager : SingletonMonovehavior<TilesManager>
                 break;
             }
         }
-
+        
         return result;
     }
-    
+}
+
+static class TileSelecter
+{
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="presenters">presenter配列</param>
+    /// <param name="i">中心presenterのx番号</param>
+    /// <param name="j">中心presenterのy番号</param>
+    /// <returns></returns>
+     public static TilePresenter[] SelectCross(TilePresenter[,] presenters, int i, int j)
+    {
+        var result = new List<TilePresenter>();
+       var xlength = presenters.GetLength(1);
+       var ylength = presenters.GetLength(0);
+       
+       //上方向追加
+       if (j > 0)
+       {
+           result.Add(presenters[i,j - 1]);
+       }
+       //下方向追加
+       if (j < xlength - 1)
+       {
+           result.Add(presenters[i,j + 1]);
+       }
+       //左方向追加
+       if (i > 0)
+       {
+           result.Add(presenters[i - 1,j]);
+       }
+       //右方向追加
+       if(i < ylength - 1)
+       {
+           result.Add(presenters[i + 1,j]);
+       }
+       result.Add(presenters[i,j]);
+
+       return result.ToArray();
+    }
+
+    public static TilePresenter[] SelectSquare(TilePresenter[,] presenters, int i, int j)
+    {
+        var result = new List<TilePresenter>();
+        var xlength = presenters.GetLength(1);
+        var ylength = presenters.GetLength(0);
+        //左上追加
+        if (j > 0 && i > 0)
+        {
+            result.Add(presenters[i - 1, j - 1]);
+        }
+        //右上追加
+        if (j > 0 && i < ylength - 1)
+        {
+            result.Add(presenters[i + 1, j - 1]);
+        }
+        //左下追加
+        if (j < xlength - 1 && i > 0)
+        {
+            result.Add(presenters[i - 1, j + 1]);
+        }
+        //右下追加
+        if (j < xlength - 1 && i < ylength - 1)
+        {
+            result.Add(presenters[i + 1, j + 1]);
+        }
+
+        foreach (var VARIABLE in SelectCross(presenters , i , j))
+        {
+            result.Add(VARIABLE);
+        }
+
+        return result.ToArray();
+    }
+
 }
     
