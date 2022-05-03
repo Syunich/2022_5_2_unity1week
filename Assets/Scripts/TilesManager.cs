@@ -45,7 +45,7 @@ public class TilesManager : SingletonMonovehavior<TilesManager>
         get => presenters.GetLength(0);
     }
 
-    private void Awake()
+    protected override void Awake()
     {
         presenters = _mapcreator.CreateMap();
     }
