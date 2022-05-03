@@ -3,10 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SyunichTool;
-using System.Linq;
-using UnityEditor.Experimental.GraphView;
-using UnityEngine.Events;
-using UnityEngine.Networking;
 
 public class TilesManager : SingletonMonovehavior<TilesManager>
 {
@@ -30,6 +26,16 @@ public class TilesManager : SingletonMonovehavior<TilesManager>
         return false;
     }
 
+    public bool IsAnyBlack()
+    {
+        foreach (var presenter in presenters)
+        {
+            if(!presenter.GetModel().IsWhite) 
+                return true;
+        }
+        return false;
+    }
+
     public int xlength
     {
         get => presenters.GetLength(1);
@@ -43,12 +49,12 @@ public class TilesManager : SingletonMonovehavior<TilesManager>
     {
         presenters = _mapcreator.CreateMap();
     }
-
-    public void Reverse(TilePresenter presenter, ReverseType type)
+    
+    public IEnumerator Reverse(TilePresenter presenter, ReverseType type)
     {
-        if (IsAnyMoving())
+        if (IsAnyMoving() || !GameManager.Instance.CanTouch)
         {
-            return;
+            yield break;
         }
         if (!CheckPresenterInPresenters(presenter))
         {
@@ -73,6 +79,16 @@ public class TilesManager : SingletonMonovehavior<TilesManager>
                 }
                 break;
         }
+        
+        //TODO::ここの待機時間雑
+        yield return new WaitForSeconds(0.91f);
+        Debug.Log(!IsAnyBlack());
+        if (!IsAnyBlack())
+        {
+            GameManager.Instance.GameClear();
+        }
+        
+        
     }
 
     private (int i , int j) GetElementsFromPresenter(TilePresenter presenter)

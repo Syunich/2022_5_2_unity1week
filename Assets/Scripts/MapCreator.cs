@@ -1,9 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
-using UnityEngine.Serialization;
 
 public class MapCreator : MonoBehaviour
 { 
@@ -50,7 +45,7 @@ public class MapCreator : MonoBehaviour
          {
             bool isWhite = CheckIsWhiteFromNum(MapLines[i][j]);
             x = (j -  (xlength / 2)) * lengthBetweenTile + (lengthBetweenTile / 2.0f) * (1 - xlength % 2);
-            result[i ,j] = TilePreCreator.Instantiate(mapTileObj, new Vector3(x, y, 0), isWhite);
+            result[i ,j] = TilePreCreator.Instantiate(mapTileObj, new Vector3(x, y, mapTileObj.transform.position.z), isWhite);
          }
       }
       return result;

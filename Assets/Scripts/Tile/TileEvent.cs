@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -23,17 +20,16 @@ public class TileEvent : MonoBehaviour , IPointerClickHandler
         
         if (Input.GetKey(KeyCode.Z))
         {
-            TilesManager.Instance.Reverse(presenter , ReverseType.Cross);
+            StartCoroutine(TilesManager.Instance.Reverse(presenter , ReverseType.Cross));
             return;
         }
 
         if (Input.GetKey(KeyCode.X))
         {
-            TilesManager.Instance.Reverse(presenter, ReverseType.Square);
+            StartCoroutine(TilesManager.Instance.Reverse(presenter, ReverseType.Square));
             return;
         }
-        
-        TilesManager.Instance.Reverse(presenter, ReverseType.One);
+        StartCoroutine(TilesManager.Instance.Reverse(presenter, ReverseType.One));
     }
 }
 
