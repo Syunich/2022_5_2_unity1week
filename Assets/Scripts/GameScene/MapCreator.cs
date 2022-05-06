@@ -13,9 +13,6 @@ public class MapCreator : MonoBehaviour
    
    //タイル1つにつき壁が移動する量
    private int unitPerWallMoveAmout = 57;
-   
-   //TODO:ここを変更してステージ作成
-   public static int MapNumber = 1;
 
    private string[] LoadMapFromResource(int mapnumber)
    {
@@ -29,7 +26,7 @@ public class MapCreator : MonoBehaviour
    //縦横等間隔に生成
    public TilePresenter[,] CreateMap()
    {
-      string[] MapLines = LoadMapFromResource(MapNumber);
+      string[] MapLines = LoadMapFromResource(Info.StageNum);
       int ylength = MapLines.Length;
       int xlength = MapLines[0].Length - 1;
       Debug.Log(xlength);

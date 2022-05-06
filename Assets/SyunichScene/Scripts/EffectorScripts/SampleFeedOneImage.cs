@@ -17,6 +17,7 @@ namespace SyunichSample
         public override IEnumerator RunBefore()
         {
             _feedimage.raycastTarget = true;
+            Info.IsSceneChanging = true;
             yield return _feedimage.DOFade(1, _fadespeed).Play().WaitForCompletion();
         }
 
@@ -25,6 +26,7 @@ namespace SyunichSample
             yield return _feedimage.DOFade(0, _fadespeed).Play().WaitForCompletion();
             _feedimage.raycastTarget = false;
             Debug.Log($"{typeof(SampleFeedOneImage).FullName}:シーン遷移完了");
+            Info.IsSceneChanging = false;
             Destroy(this.gameObject);
         }
     }

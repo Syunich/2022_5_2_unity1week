@@ -15,6 +15,10 @@ public class TileEvent : MonoBehaviour , IPointerClickHandler
     //タイルがクリックされた時の動作
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (Info.IsSceneChanging)
+            return;
+            
+        //同時押しの場合は見過ごす
         if (Input.GetKey(KeyCode.Z) && Input.GetKey(KeyCode.X))
             return;
         

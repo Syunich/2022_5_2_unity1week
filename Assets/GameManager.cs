@@ -6,6 +6,7 @@ public class GameManager : SingletonMonovehavior<GameManager>
 {
     protected override bool IsDestroyOnLoad{ get => true; }
     public bool CanTouch { get; set; }
+    public int NumOfPossibleReturn { get; set; }
 
     [SerializeField] private GameClearEffect gameClearEffect;
 
