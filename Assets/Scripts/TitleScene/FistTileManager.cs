@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,7 @@ public class FistTileManager : MonoBehaviour , IPointerClickHandler
 
    public void OnPointerClick(PointerEventData eventData)
    {
-       Debug.Log("CLICKED");
+       Debug.Log(Math.Log(Math.E,  0));
        if (!IsClicked)
        {
            IsClicked = true;
@@ -22,9 +23,7 @@ public class FistTileManager : MonoBehaviour , IPointerClickHandler
 
    private IEnumerator MoveTitle()
    {
-       Debug.Log("in movetitle");
        yield return StartCoroutine(view.Reverse());
      yield return StartCoroutine(TM.IndicateTitle());
-     Debug.Log("out movetitle");
    }
 }
