@@ -13,7 +13,6 @@ public class FistTileManager : MonoBehaviour , IPointerClickHandler
 
    public void OnPointerClick(PointerEventData eventData)
    {
-       Debug.Log(Math.Log(Math.E,  0));
        if (!IsClicked)
        {
            IsClicked = true;

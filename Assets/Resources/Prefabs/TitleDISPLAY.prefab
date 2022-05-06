@@ -504,6 +504,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6488119053836411888}
     m_Modifications:
+    - target: {fileID: -8645074050961863748, guid: 5fad0b3aa71037b4f86fcca1ee96547b,
+        type: 3}
+      propertyPath: sceneName
+      value: TutorialScene
+      objectReference: {fileID: 0}
+    - target: {fileID: -8645074050961863748, guid: 5fad0b3aa71037b4f86fcca1ee96547b,
+        type: 3}
+      propertyPath: miniParticle
+      value: 
+      objectReference: {fileID: 2419342834757077549, guid: deb8461991f129a4687739b116fd5539,
+        type: 3}
     - target: {fileID: 6158172168659250985, guid: 5fad0b3aa71037b4f86fcca1ee96547b,
         type: 3}
       propertyPath: m_Name
@@ -584,6 +595,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6488119053836411888}
     m_Modifications:
+    - target: {fileID: -8645074050961863748, guid: 5fad0b3aa71037b4f86fcca1ee96547b,
+        type: 3}
+      propertyPath: sceneName
+      value: StageSelectScene
+      objectReference: {fileID: 0}
+    - target: {fileID: -8645074050961863748, guid: 5fad0b3aa71037b4f86fcca1ee96547b,
+        type: 3}
+      propertyPath: miniParticle
+      value: 
+      objectReference: {fileID: 2419342834757077549, guid: deb8461991f129a4687739b116fd5539,
+        type: 3}
     - target: {fileID: 6158172168659250985, guid: 5fad0b3aa71037b4f86fcca1ee96547b,
         type: 3}
       propertyPath: m_Name

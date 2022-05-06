@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class SceneChangeTileManager : MonoBehaviour , IPointerClickHandler
+public class LastTileMamager : MonoBehaviour , IPointerClickHandler
 {
     [SerializeField] private bool IsClicked = false;
-    [SerializeField] private string sceneName;
     [SerializeField] private TileView view;
     [SerializeField] private ParticleSystem miniParticle;
     
@@ -14,20 +14,18 @@ public class SceneChangeTileManager : MonoBehaviour , IPointerClickHandler
     {
         if (Info.IsSceneChanging)
             return;
-
+        
         if (!IsClicked)
         {
             IsClicked = true;
-            StartCoroutine(SceneChange());
+            StartCoroutine(Reverse());
         }
     }
 
-    private IEnumerator SceneChange()
+    private IEnumerator Reverse()
     {
         yield return StartCoroutine(view.Reverse());
         view.gameObject.GetComponent<MeshRenderer>().enabled = false;
-        Instantiate(miniParticle, view.gameObject.transform.position,Quaternion.identity);
-        SyunichTool.SceneChanger.Instance.ChangeScene(sceneName, 0);
+        Instantiate(miniParticle, view.gameObject.transform.position , Quaternion.identity);
     }
-    
 }
