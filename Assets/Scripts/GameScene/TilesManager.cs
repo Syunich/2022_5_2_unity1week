@@ -11,10 +11,16 @@ public class TilesManager : SingletonMonovehavior<TilesManager>
         get => true;
     }
 
-    //タイル全般を扱う。
+    //タイル全般を扱う
     [SerializeField] MapCreator _mapcreator;
+    [SerializeField] private RemainTextManager RTM;
     private TilePresenter[,] presenters;
     private float lengthBetweenTile = 0.8f;
+    private int canreturnnum;
+    public float LengthBetweenTile
+    {
+        get => lengthBetweenTile;
+    }
 
     public bool IsAnyMoving()
     {
@@ -48,6 +54,8 @@ public class TilesManager : SingletonMonovehavior<TilesManager>
     protected override void Awake()
     {
         presenters = _mapcreator.CreateMap();
+        canreturnnum = Info.CanReturnNum;
+        RTM.IndicateRemain(canreturnnum);
     }
     
     public IEnumerator Reverse(TilePresenter presenter, ReverseType type)
@@ -56,11 +64,19 @@ public class TilesManager : SingletonMonovehavior<TilesManager>
         {
             yield break;
         }
-        if (!CheckPresenterInPresenters(presenter))
+
+        //回数上限時の処理
+        if (canreturnnum == 0)
+        {
+            yield break;
+        }   
+        
+            if (!CheckPresenterInPresenters(presenter))
         {
             Debug.LogError("Cant Find" + presenter + "in Array");
         }
 
+            canreturnnum -= 1;
         var indexes = GetElementsFromPresenter(presenter);
         TilePresenter[] selected;
         switch (type)
@@ -79,15 +95,13 @@ public class TilesManager : SingletonMonovehavior<TilesManager>
                 }
                 break;
         }
-        
         //TODO::ここの待機時間雑
         yield return new WaitForSeconds(0.91f);
-        Debug.Log(!IsAnyBlack());
+        RTM.IndicateRemain(canreturnnum);
         if (!IsAnyBlack())
         {
             GameManager.Instance.GameClear();
         }
-        
         
     }
 

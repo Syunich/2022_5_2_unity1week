@@ -6,7 +6,11 @@ using UnityEngine.EventSystems;
 public class StageSelectTileManager : MonoBehaviour , IPointerClickHandler
 {
     [SerializeField] private bool IsClicked = false;
+    
+    [Header("行くステージの情報")]
     [SerializeField] private int StageNumber;
+    [SerializeField] private int canReturnNum;
+    
     [SerializeField] private TileView view;
     [SerializeField] private ParticleSystem miniParticle;
     public void OnPointerClick(PointerEventData eventData)
@@ -17,6 +21,7 @@ public class StageSelectTileManager : MonoBehaviour , IPointerClickHandler
         if (!IsClicked)
         {
             IsClicked = true;
+            Info.IsSceneChanging = true;
             StartCoroutine(StageChange());
         }
         
@@ -28,6 +33,7 @@ public class StageSelectTileManager : MonoBehaviour , IPointerClickHandler
         view.gameObject.GetComponent<MeshRenderer>().enabled = false;
         Instantiate(miniParticle, view.gameObject.transform.position,Quaternion.identity);
         Info.StageNum = StageNumber;
+        Info.CanReturnNum = canReturnNum;
         SyunichTool.SceneChanger.Instance.ChangeScene("GameScene", 0);
     }
 }
