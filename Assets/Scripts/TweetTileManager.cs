@@ -33,6 +33,7 @@ public class TweetTileManager : MonoBehaviour, IPointerClickHandler
   IEnumerator TweetStageClear()
   {
     yield return StartCoroutine(view.Reverse());
+    AudioManager.Instance.PlaySE(4);
     Instantiate(TweetParticle, view.gameObject.transform.position, Quaternion.identity);
     naichilab.UnityRoomTweet.Tweet("whitevery", $"ステージ{Info.StageNum}をクリアしました！", "WHITEVERY");
     IsMoving = false;
@@ -41,6 +42,7 @@ public class TweetTileManager : MonoBehaviour, IPointerClickHandler
   IEnumerator TweetGameClear()
   {
     yield return StartCoroutine(view.Reverse());
+    AudioManager.Instance.PlaySE(4);
     Instantiate(TweetParticle, view.gameObject.transform.position, Quaternion.identity);
     naichilab.UnityRoomTweet.Tweet("whitevery", "ゲームをクリアしました！", "WHITEVERY");
     IsMoving = false;

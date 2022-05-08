@@ -24,6 +24,9 @@ public class FistTileManager : MonoBehaviour , IPointerClickHandler
    private IEnumerator MoveTitle()
    {
        yield return StartCoroutine(view.Reverse());
-     yield return StartCoroutine(TM.IndicateTitle());
+       AudioManager.Instance.PlaySE(0);
+       AudioManager.Instance.PlaySE(3);
+       AudioManager.Instance.PlayBGM(0);
+       yield return StartCoroutine(TM.IndicateTitle());
    }
 }

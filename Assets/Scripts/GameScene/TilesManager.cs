@@ -98,6 +98,17 @@ public class TilesManager : SingletonMonovehavior<TilesManager>
         //TODO::ここの待機時間雑
         yield return new WaitForSeconds(0.91f);
         RTM.IndicateRemain(canreturnnum);
+        switch (type)
+        {
+            case ReverseType.One :AudioManager.Instance.PlaySE(0); Debug.Log("called1");
+                break;
+            case  ReverseType.Cross: AudioManager.Instance.PlaySE(1);Debug.Log("called2");
+                break;
+            case ReverseType.Square: AudioManager.Instance.PlaySE(2);Debug.Log("called3");
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(type), type, null);
+        }
         if (!IsAnyBlack())
         {
             GameManager.Instance.GameClear();

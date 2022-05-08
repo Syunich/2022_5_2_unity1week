@@ -30,6 +30,7 @@ public class StageSelectTileManager : MonoBehaviour , IPointerClickHandler
     private IEnumerator StageChange()
     {
         yield return StartCoroutine(view.Reverse());
+        AudioManager.Instance.PlaySE(0);
         view.gameObject.GetComponent<MeshRenderer>().enabled = false;
         Instantiate(miniParticle, view.gameObject.transform.position,Quaternion.identity);
         Info.StageNum = StageNumber;

@@ -6,11 +6,10 @@ using SyunichTool;
 
 public class AudioManager : SingletonMonovehavior<AudioManager>
 {
-    public AudioSource BGMSource;
-    public AudioSource SESource;
-    public AudioClip[] Voices;
-    public AudioClip[] BGMs;
-    public AudioClip[] SEs;
+    [SerializeField] private AudioSource BGMSource;
+    [SerializeField] private AudioSource SESource;
+    [SerializeField] private AudioClip[] BGMs;
+    [SerializeField] private  AudioClip[] SEs;
 
 
     protected override bool IsDestroyOnLoad
@@ -18,6 +17,17 @@ public class AudioManager : SingletonMonovehavior<AudioManager>
         get => false;
     }
 
+    public float BGMvolume
+    {
+        get => BGMSource.volume;
+        set => BGMSource.volume = value;
+    }
+
+    public float SEvolume
+    {
+        get => SESource.volume;
+        set => SESource.volume = value;
+    }
     public void Awake()
     {
         if (this != Instance)
@@ -38,21 +48,5 @@ public class AudioManager : SingletonMonovehavior<AudioManager>
     {
         SESource.PlayOneShot(SEs[index]);
     }
-
-    public void PlayVoice(int index)
-    {
-        SESource.PlayOneShot(Voices[index]);
-    }
-
-    public void FeedOutBGM()
-    {
-        float nowvolume = BGMSource.volume;
-        BGMSource.DOFade(0, 1.0f)
-            .OnComplete(() =>
-                {
-                    BGMSource.Stop();
-                    BGMSource.volume = nowvolume;
-                }
-            ).Play();
-    }
+    
 }

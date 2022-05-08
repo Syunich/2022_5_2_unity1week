@@ -30,6 +30,8 @@ public class LastTileMamager : MonoBehaviour , IPointerClickHandler
         Instantiate(miniParticle, view.gameObject.transform.position , Quaternion.identity);
         if (Info.IsAllCleared())
         {
+            AudioManager.Instance.PlaySE(0);
+            AudioManager.Instance.PlaySE(3);
            StartCoroutine(allclear.Indicate());
         }
     }

@@ -745,6 +745,9 @@ MonoBehaviour:
   - {fileID: 1617330277}
   - {fileID: 1964282585}
   - {fileID: 428751040}
+  BackElements:
+  - {fileID: 862713587}
+  - {fileID: 1321283267}
 --- !u!4 &421379800
 Transform:
   m_ObjectHideFlags: 0
@@ -1806,6 +1809,12 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &862713587 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6158172168659250985, guid: 5fad0b3aa71037b4f86fcca1ee96547b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1774371186}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &926381529
 GameObject:
   m_ObjectHideFlags: 0

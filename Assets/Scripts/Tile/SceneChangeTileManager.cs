@@ -25,6 +25,7 @@ public class SceneChangeTileManager : MonoBehaviour , IPointerClickHandler
     private IEnumerator SceneChange()
     {
         yield return StartCoroutine(view.Reverse());
+        AudioManager.Instance.PlaySE(0);
         view.gameObject.GetComponent<MeshRenderer>().enabled = false;
         Instantiate(miniParticle, view.gameObject.transform.position,Quaternion.identity);
         SyunichTool.SceneChanger.Instance.ChangeScene(sceneName, 0);

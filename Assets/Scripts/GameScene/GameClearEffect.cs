@@ -17,6 +17,7 @@ public class GameClearEffect : MonoBehaviour
       Instantiate(ClearParticle);
       whiteBackGround.enabled = true;
       yield return new WaitForSeconds(0.8f);
+      AudioManager.Instance.PlaySE(5);
       StartCoroutine(FadeInTile(1.5f));
       StartCoroutine(tweettile.FadeInTweetTile(1.5f));
       ClearUnderLine.transform.DOScaleX(10, 1.5f).SetEase(Ease.OutQuart).Play();

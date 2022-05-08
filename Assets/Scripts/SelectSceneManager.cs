@@ -6,7 +6,7 @@ using UnityEngine;
 public class SelectSceneManager : MonoBehaviour
 {
   [SerializeField] private GameObject[] StageSelectPanels;
-
+  [SerializeField] private GameObject[] BackElements;
   public bool IsAllCleared()
   {
     foreach (var VARIABLE in StageSelectPanels)
@@ -23,6 +23,14 @@ public class SelectSceneManager : MonoBehaviour
     foreach (var num in Info.ClearStageNum)
     {
       StageSelectPanels[num - 1].SetActive(false);
+    }
+
+    if (Info.IsAllCleared())
+    {
+      foreach (var VARIABLE in BackElements)
+      {
+      VARIABLE.SetActive(false);
+      }
     }
   }
 }

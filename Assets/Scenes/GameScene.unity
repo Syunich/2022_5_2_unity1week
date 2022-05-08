@@ -314,7 +314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8663be8b18e6ace4c8fb56d93b559d68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsStageTile: 0
+  IsStageTile: 1
   view: {fileID: 52772277}
   TweetParticle: {fileID: 8270789665866009699, guid: 840fbee4aa025ea40b593121b9af38ff,
     type: 3}

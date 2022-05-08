@@ -24,6 +24,7 @@ public class GameManager : SingletonMonovehavior<GameManager>
     {
         CanTouch = false;
         Info.ClearStageNum.Add(Info.StageNum);
+        AudioManager.Instance.PlaySE(3);
         StartCoroutine(gameClearEffect.GameClearUIMoving());
     }
 

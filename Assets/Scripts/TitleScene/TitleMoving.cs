@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
+using Slider = UnityEngine.UIElements.Slider;
 
 public class TitleMoving : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class TitleMoving : MonoBehaviour
   [SerializeField] private Text TutorialText;
   [SerializeField] private GameObject[] TitleTiles;
   [SerializeField] private MeshRenderer[] TitleMeshes;
-  
+  [SerializeField] private CanvasGroup fadeCG;
   public IEnumerator IndicateTitle()
   {
     TitleCG.alpha = 1;
@@ -32,8 +33,7 @@ public class TitleMoving : MonoBehaviour
       .SetEase(Ease.OutQuad));
     seq_text.Join(TutorialText.transform.DOLocalMoveX(TutorialText.transform.localPosition.x - 500, 1.5f).From()
       .SetEase(Ease.OutQuad));
-    seq_text.Join(PlayText.DOFade(1, 1.5f));
-    seq_text.Join(TutorialText.DOFade(1, 1.5f));
+    seq_text.Join(fadeCG.DOFade(1, 1.5f));
     yield return seq_text.Play().WaitForCompletion();
     yield return StartCoroutine(FadeInTile(1.0f));
   }
