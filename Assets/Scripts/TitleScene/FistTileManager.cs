@@ -16,6 +16,7 @@ public class FistTileManager : MonoBehaviour , IPointerClickHandler
        if (!IsClicked)
        {
            IsClicked = true;
+           Info.IsFirstLoaded = true;
            StartCoroutine(MoveTitle());
        }
    }

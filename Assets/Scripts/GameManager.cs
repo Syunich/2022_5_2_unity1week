@@ -34,6 +34,11 @@ public class GameManager : SingletonMonovehavior<GameManager>
             return;
         }
 
+        if (TilesManager.Instance.IsAnyMoving())
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.R))
         {
             SceneChanger.Instance.ChangeScene("GameScene" , 0);

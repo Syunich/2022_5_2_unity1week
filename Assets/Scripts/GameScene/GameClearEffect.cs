@@ -11,13 +11,14 @@ public class GameClearEffect : MonoBehaviour
    [SerializeField] private Image ClearUnderLine;
    [SerializeField] private GameObject[] ClearTiles;
    [SerializeField] private MeshRenderer[] ClearMeshes;
-
+   [SerializeField] private TweetTileManager tweettile;
    public IEnumerator GameClearUIMoving()
    {
       Instantiate(ClearParticle);
       whiteBackGround.enabled = true;
       yield return new WaitForSeconds(0.8f);
       StartCoroutine(FadeInTile(1.5f));
+      StartCoroutine(tweettile.FadeInTweetTile(1.5f));
       ClearUnderLine.transform.DOScaleX(10, 1.5f).SetEase(Ease.OutQuart).Play();
       yield return StartCoroutine(UpAndFadeIn(ClearCG, 1.5f));
       ClearCG.interactable = true;
