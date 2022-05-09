@@ -22,8 +22,8 @@ public class TutorialUIManager : MonoBehaviour
    private Dictionary<int, string> TutorialInfodic = new Dictionary<int, string>()
    {
       {101, "【Click】 : Reverse tile"},
-      {102, "【Z】 + 【Click】 : Reverse tile in a cross"},
-      {103, "【X】 + 【Click】 : Reverse tile in a square"}
+      {102, "【Z】 + 【Click】 : Reverse tiles in a cross"},
+      {103, "【X】 + 【Click】 : Reverse tiles in a square"}
    };
 
    private void Awake()

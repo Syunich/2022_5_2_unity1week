@@ -12,6 +12,7 @@ public class TitleSceneManager : MonoBehaviour
    private void Awake()
    {
       Info.IsTutorial = false;
+      TutorialManager.TutorialNumber = 101;
    }
 
    private void Start()
