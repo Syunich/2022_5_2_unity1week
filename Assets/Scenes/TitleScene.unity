@@ -1872,6 +1872,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TitleDisplay: {fileID: 815941905868020173, guid: bc8d41fffb2b0da46b2526d973d58367,
     type: 3}
+  FirstTile: {fileID: 5731812465034536339}
+  FirstDisplay: {fileID: 6488119053498509519}
 --- !u!4 &1688033353
 Transform:
   m_ObjectHideFlags: 0

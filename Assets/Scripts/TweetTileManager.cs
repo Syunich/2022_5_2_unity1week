@@ -44,7 +44,7 @@ public class TweetTileManager : MonoBehaviour, IPointerClickHandler
     yield return StartCoroutine(view.Reverse());
     AudioManager.Instance.PlaySE(4);
     Instantiate(TweetParticle, view.gameObject.transform.position, Quaternion.identity);
-    naichilab.UnityRoomTweet.Tweet("whitevery", "ゲームをクリアしました！", "WHITEVERY");
+    naichilab.UnityRoomTweet.Tweet("whitevery", "全てを真っ白にしました！", "WHITEVERY");
     IsMoving = false;
   }
 

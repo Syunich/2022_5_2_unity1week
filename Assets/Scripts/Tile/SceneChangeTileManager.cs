@@ -18,6 +18,7 @@ public class SceneChangeTileManager : MonoBehaviour , IPointerClickHandler
         if (!IsClicked)
         {
             IsClicked = true;
+            Info.IsSceneChanging = true;
             StartCoroutine(SceneChange());
         }
     }

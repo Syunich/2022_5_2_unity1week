@@ -4293,7 +4293,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: THANKYOU  FOR  PLAIYNG.
+  m_Text: THANK YOU  FOR  PLAYING.
 --- !u!222 &1926850456
 CanvasRenderer:
   m_ObjectHideFlags: 0
