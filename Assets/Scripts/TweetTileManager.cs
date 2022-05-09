@@ -52,11 +52,11 @@ public class TweetTileManager : MonoBehaviour, IPointerClickHandler
   {
     this.gameObject.SetActive(true);
     Sequence seq = DOTween.Sequence();
-    seq.Join(OmoteIcon.DOFade(1, sec).SetEase(Ease.OutQuart));
+    seq.Join(OmoteIcon.DOFade(1, sec).SetEase(Ease.InQuad));
 
     foreach (var VARIABLE in Mesh.materials)
     {
-      seq.Join(VARIABLE.DOFade(1, sec).SetEase(Ease.OutQuart));
+      seq.Join(VARIABLE.DOFade(1, sec).SetEase(Ease.InQuad));
     }
 
     yield return seq.Play().WaitForCompletion();

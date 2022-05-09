@@ -988,7 +988,7 @@ PrefabInstance:
         type: 3}
       propertyPath: miniParticle
       value: 
-      objectReference: {fileID: 2419342834757077549, guid: deb8461991f129a4687739b116fd5539,
+      objectReference: {fileID: 4351725244815259863, guid: 28652e154d1743b4ea729e81ee0c74f9,
         type: 3}
     - target: {fileID: 5653922461814492924, guid: 5fad0b3aa71037b4f86fcca1ee96547b,
         type: 3}
@@ -1506,7 +1506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0e2791eb45229d44b1b016bc341c9d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ClearParticle: {fileID: 7300001584137811187, guid: cedb78e5e49ee2140a179c45d24c2430,
+  ClearParticle: {fileID: 1012492927266406741, guid: 447bd27af6e067b49bb8b358d0cb2a7f,
     type: 3}
   ClearCG: {fileID: 962009362}
   whiteBackGround: {fileID: 1966213734}

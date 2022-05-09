@@ -2975,7 +2975,7 @@ MonoBehaviour:
   IsClicked: 0
   sceneName: StageSelectScene
   view: {fileID: 269438361382460764}
-  miniParticle: {fileID: 2419342834757077549, guid: deb8461991f129a4687739b116fd5539,
+  miniParticle: {fileID: 4351725244815259863, guid: 28652e154d1743b4ea729e81ee0c74f9,
     type: 3}
 --- !u!114 &5912358878354087783
 MonoBehaviour:
@@ -2992,7 +2992,7 @@ MonoBehaviour:
   IsClicked: 0
   sceneName: TutorialScene
   view: {fileID: 269438361782531320}
-  miniParticle: {fileID: 2419342834757077549, guid: deb8461991f129a4687739b116fd5539,
+  miniParticle: {fileID: 4351725244815259863, guid: 28652e154d1743b4ea729e81ee0c74f9,
     type: 3}
 --- !u!23 &6092105177767445574
 MeshRenderer:
@@ -3420,7 +3420,7 @@ MonoBehaviour:
   TitleShadeL: {fileID: 692038694}
   TitleShadeR: {fileID: 930427583}
   IndicateTime: 1.5
-  particle: {fileID: 7300001584137811187, guid: cdf077e319ed8834884d126a700986e6,
+  particle: {fileID: 1012492927266406741, guid: 447bd27af6e067b49bb8b358d0cb2a7f,
     type: 3}
   PlayText: {fileID: 6488119052477158169}
   TutorialText: {fileID: 6488119052334624013}

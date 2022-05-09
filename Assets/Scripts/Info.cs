@@ -13,6 +13,7 @@ public static class Info
    public static List<int> ClearStageNum = new List<int>() { };
    public static int CanReturnNum = 3;
    public static bool IsFirstLoaded = false;
+   public static bool IsTutorial = false;
    
    public static bool IsAllCleared()
    {

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -7,9 +8,18 @@ using UnityEngine.EventSystems;
 public class TileEvent : MonoBehaviour , IPointerClickHandler
 {
     private TilePresenter presenter;
+    private IReverser _reverser;
     private void Awake()
     {
         presenter = GetComponent<TilePresenter>();
+        if (Info.IsTutorial)
+        {
+            _reverser = TutorialTileManager.Instance;
+        }
+        else
+        {
+            _reverser = TilesManager.Instance;
+        }
     }
 
     //タイルがクリックされた時の動作
@@ -24,16 +34,16 @@ public class TileEvent : MonoBehaviour , IPointerClickHandler
         
         if (Input.GetKey(KeyCode.Z))
         {
-            StartCoroutine(TilesManager.Instance.Reverse(presenter , ReverseType.Cross));
+            StartCoroutine(_reverser.Reverse(presenter , ReverseType.Cross));
             return;
         }
 
         if (Input.GetKey(KeyCode.X))
         {
-            StartCoroutine(TilesManager.Instance.Reverse(presenter, ReverseType.Square));
+            StartCoroutine(_reverser.Reverse(presenter, ReverseType.Square));
             return;
         }
-        StartCoroutine(TilesManager.Instance.Reverse(presenter, ReverseType.One));
+        StartCoroutine(_reverser.Reverse(presenter, ReverseType.One));
     }
 }
 
